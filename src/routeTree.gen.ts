@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as QuestionRouteImport } from './routes/question'
+import { Route as LetterRouteImport } from './routes/letter'
 import { Route as IndexRouteImport } from './routes/index'
 
+const QuestionRoute = QuestionRouteImport.update({
+  id: '/question',
+  path: '/question',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LetterRoute = LetterRouteImport.update({
+  id: '/letter',
+  path: '/letter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/letter': typeof LetterRoute
+  '/question': typeof QuestionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/letter': typeof LetterRoute
+  '/question': typeof QuestionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/letter': typeof LetterRoute
+  '/question': typeof QuestionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/letter' | '/question'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/letter' | '/question'
+  id: '__root__' | '/' | '/letter' | '/question'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LetterRoute: typeof LetterRoute
+  QuestionRoute: typeof QuestionRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/question': {
+      id: '/question'
+      path: '/question'
+      fullPath: '/question'
+      preLoaderRoute: typeof QuestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/letter': {
+      id: '/letter'
+      path: '/letter'
+      fullPath: '/letter'
+      preLoaderRoute: typeof LetterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +87,19 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LetterRoute: LetterRoute,
+  QuestionRoute: QuestionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
