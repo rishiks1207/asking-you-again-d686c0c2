@@ -178,11 +178,16 @@ function QuestionPage() {
                 </button>
 
                 <button
+                  ref={noBtnRef}
                   onClick={handleNo}
                   disabled={submitting}
-                  className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-sepia/60 bg-transparent px-10 py-4 text-lg text-sepia transition-all hover:bg-sepia/10 disabled:opacity-50"
-                  style={{ fontFamily: "var(--font-serif)" }}
+                  className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-sepia/60 bg-transparent px-10 py-4 text-lg text-sepia transition-transform duration-300 ease-out hover:bg-sepia/10 disabled:opacity-50"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    transform: `translate(${noOffset.x}px, ${noOffset.y}px)`,
+                  }}
                 >
+
                   No
                 </button>
               </div>
