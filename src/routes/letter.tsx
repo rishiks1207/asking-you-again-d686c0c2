@@ -14,6 +14,27 @@ export const Route = createFileRoute("/letter")({
 function LetterPage() {
   return (
     <main className="paper-grain vignette relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-16">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+        {Array.from({ length: 18 }).map((_, i) => {
+          const left = (i * 53) % 100;
+          const delay = (i * 0.7) % 12;
+          const duration = 9 + ((i * 1.3) % 8);
+          const size = 14 + ((i * 7) % 18);
+          return (
+            <span
+              key={i}
+              className="absolute bottom-[-40px] text-rose-deep/60"
+              style={{
+                left: `${left}%`,
+                fontSize: `${size}px`,
+                animation: `float-heart ${duration}s linear ${delay}s infinite`,
+              }}
+            >
+              ♥
+            </span>
+          );
+        })}
+      </div>
       <article
         className="relative z-10 mx-auto w-full max-w-2xl rounded-sm p-10 sm:p-14 shadow-[0_30px_60px_-20px_rgba(80,40,20,0.35),0_8px_20px_-10px_rgba(80,40,20,0.3)]"
         style={{
