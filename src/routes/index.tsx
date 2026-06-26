@@ -40,7 +40,7 @@ function Index() {
           className="mb-6 text-sm uppercase tracking-[0.4em] text-sepia"
           style={{ fontFamily: "var(--font-type)" }}
         >
-          ✦  a letter, in three parts  ✦
+          ✦ IT HAS BEEN 6 MONTHS ✦
         </p>
 
         <h1
