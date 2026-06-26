@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import film1 from "@/assets/film-1.jpg";
 import film2 from "@/assets/film-2.jpg";
@@ -67,6 +67,38 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
 function QuestionPage() {
   const [submitting, setSubmitting] = useState(false);
   const [thanks, setThanks] = useState(false);
+  const [noOffset, setNoOffset] = useState({ x: 0, y: 0 });
+  const [dodgeCount, setDodgeCount] = useState(0);
+  const noBtnRef = useRef<HTMLButtonElement | null>(null);
+  const DODGE_LIMIT = 8;
+  const caught = dodgeCount >= DODGE_LIMIT;
+
+  useEffect(() => {
+    if (caught) return;
+    const handler = (e: PointerEvent) => {
+      const btn = noBtnRef.current;
+      if (!btn) return;
+      const r = btn.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = e.clientX - cx;
+      const dy = e.clientY - cy;
+      const dist = Math.hypot(dx, dy);
+      if (dist < 110) {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        const maxX = Math.min(vw / 2 - r.width, 180);
+        const maxY = Math.min(vh / 2 - r.height, 140);
+        const nx = Math.max(-maxX, Math.min(maxX, noOffset.x + (Math.random() * 220 - 110) - dx * 0.6));
+        const ny = Math.max(-maxY, Math.min(maxY, noOffset.y + (Math.random() * 160 - 80) - dy * 0.6));
+        setNoOffset({ x: nx, y: ny });
+        setDodgeCount((c) => c + 1);
+      }
+    };
+    window.addEventListener("pointermove", handler);
+    return () => window.removeEventListener("pointermove", handler);
+  }, [noOffset, caught]);
+
 
   const handleYes = async () => {
     if (submitting) return;
@@ -146,11 +178,16 @@ function QuestionPage() {
                 </button>
 
                 <button
+                  ref={noBtnRef}
                   onClick={handleNo}
                   disabled={submitting}
-                  className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-sepia/60 bg-transparent px-10 py-4 text-lg text-sepia transition-all hover:bg-sepia/10 disabled:opacity-50"
-                  style={{ fontFamily: "var(--font-serif)" }}
+                  className="inline-flex min-w-[160px] items-center justify-center rounded-full border border-sepia/60 bg-transparent px-10 py-4 text-lg text-sepia transition-transform duration-300 ease-out hover:bg-sepia/10 disabled:opacity-50"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    transform: `translate(${noOffset.x}px, ${noOffset.y}px)`,
+                  }}
                 >
+
                   No
                 </button>
               </div>
