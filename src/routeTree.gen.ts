@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as QuestionRouteImport } from './routes/question'
 import { Route as LetterRouteImport } from './routes/letter'
+import { Route as IntroRouteImport } from './routes/intro'
 import { Route as IndexRouteImport } from './routes/index'
 
 const QuestionRoute = QuestionRouteImport.update({
@@ -23,6 +24,11 @@ const LetterRoute = LetterRouteImport.update({
   path: '/letter',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntroRoute = IntroRouteImport.update({
+  id: '/intro',
+  path: '/intro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,30 +37,34 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/intro': typeof IntroRoute
   '/letter': typeof LetterRoute
   '/question': typeof QuestionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/intro': typeof IntroRoute
   '/letter': typeof LetterRoute
   '/question': typeof QuestionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/intro': typeof IntroRoute
   '/letter': typeof LetterRoute
   '/question': typeof QuestionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/letter' | '/question'
+  fullPaths: '/' | '/intro' | '/letter' | '/question'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/letter' | '/question'
-  id: '__root__' | '/' | '/letter' | '/question'
+  to: '/' | '/intro' | '/letter' | '/question'
+  id: '__root__' | '/' | '/intro' | '/letter' | '/question'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  IntroRoute: typeof IntroRoute
   LetterRoute: typeof LetterRoute
   QuestionRoute: typeof QuestionRoute
 }
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LetterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/intro': {
+      id: '/intro'
+      path: '/intro'
+      fullPath: '/intro'
+      preLoaderRoute: typeof IntroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  IntroRoute: IntroRoute,
   LetterRoute: LetterRoute,
   QuestionRoute: QuestionRoute,
 }
