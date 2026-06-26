@@ -70,7 +70,7 @@ function QuestionPage() {
   const [noOffset, setNoOffset] = useState({ x: 0, y: 0 });
   const [dodgeCount, setDodgeCount] = useState(0);
   const noBtnRef = useRef<HTMLButtonElement | null>(null);
-  const DODGE_LIMIT = 8;
+  const DODGE_LIMIT = 50;
   const caught = dodgeCount >= DODGE_LIMIT;
 
   useEffect(() => {
