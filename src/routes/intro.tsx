@@ -13,24 +13,6 @@ export const Route = createFileRoute("/intro")({
 function Intro() {
   return (
     <main className="paper-grain vignette relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 py-16 text-center">
-      {/* floating hearts */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <span
-            key={i}
-            className="absolute text-rose-deep"
-            style={{
-              left: `${(i * 13 + 7) % 95}%`,
-              bottom: `-${20 + (i % 3) * 10}px`,
-              fontSize: `${14 + (i % 4) * 6}px`,
-              opacity: 0.45,
-              animation: `float-heart ${14 + i * 1.8}s linear ${i * 1.4}s infinite`,
-            }}
-          >
-            ♥
-          </span>
-        ))}
-      </div>
 
       <div
         className="relative z-10 mx-auto max-w-2xl"
