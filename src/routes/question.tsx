@@ -114,8 +114,24 @@ function QuestionPage() {
     setThanks(true);
   };
 
+  const CLICK_DODGE_LIMIT = 20;
+  const [noClicks, setNoClicks] = useState(0);
+
   const handleNo = async () => {
     if (submitting) return;
+    if (noClicks < CLICK_DODGE_LIMIT) {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const r = noBtnRef.current?.getBoundingClientRect();
+      const maxX = Math.min(vw / 2 - (r?.width ?? 160), 220);
+      const maxY = Math.min(vh / 2 - (r?.height ?? 56), 180);
+      setNoOffset({
+        x: (Math.random() * 2 - 1) * maxX,
+        y: (Math.random() * 2 - 1) * maxY,
+      });
+      setNoClicks((c) => c + 1);
+      return;
+    }
     setSubmitting(true);
     try {
       await supabase.from("responses").insert({
@@ -127,6 +143,7 @@ function QuestionPage() {
     }
     window.location.href = NO_REDIRECT_URL;
   };
+
 
   return (
     <main className="relative flex min-h-screen flex-col overflow-hidden bg-ink">
