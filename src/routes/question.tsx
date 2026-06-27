@@ -5,6 +5,16 @@ import film1 from "@/assets/film-1.jpg";
 import film2 from "@/assets/film-2.jpg";
 import film3 from "@/assets/film-3.jpg";
 import film4 from "@/assets/film-4.jpg";
+import extra1 from "@/assets/extra-1.png.asset.json";
+import extra2 from "@/assets/extra-2.png.asset.json";
+import extra3 from "@/assets/extra-3.png.asset.json";
+import extra4 from "@/assets/extra-4.png.asset.json";
+import extra5 from "@/assets/extra-5.png.asset.json";
+import extra6 from "@/assets/extra-6.png.asset.json";
+import extra7 from "@/assets/extra-7.png.asset.json";
+import extra8 from "@/assets/extra-8.png.asset.json";
+import extra9 from "@/assets/extra-9.png.asset.json";
+import extra10 from "@/assets/extra-10.png.asset.json";
 
 // 👇 Change this to wherever you want her to go if she clicks "No"
 const NO_REDIRECT_URL = "https://www.youtube.com/watch?v=hzbtyo7c2K0"; // a sad-but-pretty song
