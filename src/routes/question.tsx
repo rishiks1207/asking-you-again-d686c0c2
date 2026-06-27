@@ -232,6 +232,13 @@ function QuestionPage() {
       {/* warm overlay */}
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90" />
 
+      {/* drifting hearts everywhere */}
+      <HeartRain count={55} symbol="♥" className="text-rose/70" />
+
+      {/* burst layer (fixed, above all) */}
+      <HeartBurstLayer bursts={bursts} />
+
+
       {/* content */}
       <section className="relative z-10 mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">
         <div
