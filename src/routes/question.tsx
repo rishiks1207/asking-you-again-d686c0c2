@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { HeartBurstLayer, HeartRain, useHeartBurst } from "@/components/hearts";
 import film1 from "@/assets/film-1.jpg";
 import film2 from "@/assets/film-2.jpg";
 import film3 from "@/assets/film-3.jpg";
@@ -24,8 +25,6 @@ import more6 from "@/assets/more-6.png.asset.json";
 import more7 from "@/assets/more-7.png.asset.json";
 import more8 from "@/assets/more-8.png.asset.json";
 
-// 👇 Change this to wherever you want her to go if she clicks "No"
-const NO_REDIRECT_URL = "https://www.youtube.com/watch?v=hzbtyo7c2K0"; // a sad-but-pretty song
 
 export const Route = createFileRoute("/question")({
   head: () => ({
@@ -122,10 +121,13 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
 
 
 function QuestionPage() {
+  const navigate = useNavigate();
+  const { bursts, fire } = useHeartBurst();
   const [submitting, setSubmitting] = useState(false);
   const [thanks, setThanks] = useState(false);
   const [noOffset, setNoOffset] = useState({ x: 0, y: 0 });
   const [dodgeCount, setDodgeCount] = useState(0);
+  const yesBtnRef = useRef<HTMLButtonElement | null>(null);
   const noBtnRef = useRef<HTMLButtonElement | null>(null);
   const DODGE_LIMIT = 50;
   const caught = dodgeCount >= DODGE_LIMIT;
@@ -156,10 +158,24 @@ function QuestionPage() {
     return () => window.removeEventListener("pointermove", handler);
   }, [noOffset, caught]);
 
+  const burstFromButton = (
+    btn: HTMLButtonElement | null,
+    kind: "love" | "broken",
+    waves = 1,
+  ) => {
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    for (let i = 0; i < waves; i += 1) {
+      setTimeout(() => fire(x, y, kind), i * 140);
+    }
+  };
 
   const handleYes = async () => {
     if (submitting) return;
     setSubmitting(true);
+    burstFromButton(yesBtnRef.current, "love", 4);
     try {
       await supabase.from("responses").insert({
         answer: "yes",
@@ -168,7 +184,7 @@ function QuestionPage() {
     } catch (e) {
       console.error(e);
     }
-    setThanks(true);
+    setTimeout(() => setThanks(true), 650);
   };
 
   const CLICK_DODGE_LIMIT = 20;
@@ -190,6 +206,7 @@ function QuestionPage() {
       return;
     }
     setSubmitting(true);
+    burstFromButton(noBtnRef.current, "broken", 3);
     try {
       await supabase.from("responses").insert({
         answer: "no",
@@ -198,8 +215,9 @@ function QuestionPage() {
     } catch (e) {
       console.error(e);
     }
-    window.location.href = NO_REDIRECT_URL;
+    setTimeout(() => navigate({ to: "/manage" }), 900);
   };
+
 
 
   return (
@@ -213,6 +231,13 @@ function QuestionPage() {
 
       {/* warm overlay */}
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/70 to-ink/90" />
+
+      {/* drifting hearts everywhere */}
+      <HeartRain count={55} symbol="♥" className="text-rose/70" />
+
+      {/* burst layer (fixed, above all) */}
+      <HeartBurstLayer bursts={bursts} />
+
 
       {/* content */}
       <section className="relative z-10 mx-auto flex w-full max-w-2xl flex-1 flex-col items-center justify-center px-6 py-20 text-center">
@@ -242,6 +267,7 @@ function QuestionPage() {
 
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
                 <button
+                  ref={yesBtnRef}
                   onClick={handleYes}
                   disabled={submitting}
                   className="group inline-flex min-w-[160px] items-center justify-center gap-2 rounded-full bg-rose-deep px-10 py-4 text-lg text-cream shadow-[0_6px_0_oklch(0.4_0.15_20)] transition-all hover:translate-y-[2px] hover:shadow-[0_4px_0_oklch(0.4_0.15_20)] disabled:opacity-50"
