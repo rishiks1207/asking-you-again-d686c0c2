@@ -121,10 +121,13 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
 
 
 function QuestionPage() {
+  const navigate = useNavigate();
+  const { bursts, fire } = useHeartBurst();
   const [submitting, setSubmitting] = useState(false);
   const [thanks, setThanks] = useState(false);
   const [noOffset, setNoOffset] = useState({ x: 0, y: 0 });
   const [dodgeCount, setDodgeCount] = useState(0);
+  const yesBtnRef = useRef<HTMLButtonElement | null>(null);
   const noBtnRef = useRef<HTMLButtonElement | null>(null);
   const DODGE_LIMIT = 50;
   const caught = dodgeCount >= DODGE_LIMIT;
@@ -155,10 +158,24 @@ function QuestionPage() {
     return () => window.removeEventListener("pointermove", handler);
   }, [noOffset, caught]);
 
+  const burstFromButton = (
+    btn: HTMLButtonElement | null,
+    kind: "love" | "broken",
+    waves = 1,
+  ) => {
+    if (!btn) return;
+    const r = btn.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    for (let i = 0; i < waves; i += 1) {
+      setTimeout(() => fire(x, y, kind), i * 140);
+    }
+  };
 
   const handleYes = async () => {
     if (submitting) return;
     setSubmitting(true);
+    burstFromButton(yesBtnRef.current, "love", 4);
     try {
       await supabase.from("responses").insert({
         answer: "yes",
@@ -167,7 +184,7 @@ function QuestionPage() {
     } catch (e) {
       console.error(e);
     }
-    setThanks(true);
+    setTimeout(() => setThanks(true), 650);
   };
 
   const CLICK_DODGE_LIMIT = 20;
@@ -189,6 +206,7 @@ function QuestionPage() {
       return;
     }
     setSubmitting(true);
+    burstFromButton(noBtnRef.current, "broken", 3);
     try {
       await supabase.from("responses").insert({
         answer: "no",
@@ -197,8 +215,9 @@ function QuestionPage() {
     } catch (e) {
       console.error(e);
     }
-    window.location.href = NO_REDIRECT_URL;
+    setTimeout(() => navigate({ to: "/manage" }), 900);
   };
+
 
 
   return (
