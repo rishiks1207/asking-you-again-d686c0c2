@@ -60,16 +60,16 @@ function LetterPage() {
             words feel big enough. So I'll just say it plainly: <em>I'm sorry.</em>
           </p>
           <p className="whitespace-pre-line">
-            I'm sorry for the moments I wasn't the person you deserved. For the silences I should have filled with kindness, and the small things I let slip away that were never small at all. You trusted me with something tender. well i cant't go back and fix everything, if i could i would've done so.{" "}
+            I'm sorry for the moments I wasn't the person you deserved. For the silences I should have filled with kindness, and the small things I let slip away that were never small at all. You trusted me with something tender. well i cant't go back and fix everything, if i could i would've done so.
             {"\n"}
-            If I could go back, I would. I'd hold the moment a little longer, listen a little closer, and tell you — properly — how much light you bring into my ordinary days.
+            If I could go back, I would. I'd hold the moment a little longer, listen a little closer, and tell you — properly — how much light you bring into my ordinary days.You make me wanna be a better person.
+            {"\n"}
+            Say I'm going crazy, but I need you more than food at night, cuz
+            {"\n"}
+            I need you beside me like a flower needs the light
+            {"\n\n"}
           </p>
-          <div className="whitespace-pre-line">
-            If I could go back, I would. I'd hold the moment a little longer, listen a little closer, and tell you — properly — how much light you bring into my ordinary days. You make me wanna be a better person.{" "}
-            {"\n"}
-            <span>{"\n"}</span>
-            {"\n\n\n"}
-          </div>
+          <div className="whitespace-pre-line">{"\n"}</div>
           <p>
             You don't owe me anything. Not your forgiveness, not your time. But I needed you to know that you are
             thought of, deeply, and that the place you took up in my heart hasn't moved an inch.
