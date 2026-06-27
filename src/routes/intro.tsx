@@ -34,8 +34,9 @@ function Intro() {
 
         <div className="mx-auto my-10 h-px w-24 bg-sepia/60" />
 
-        <p className="mb-12 text-lg italic text-sepia sm:text-xl">
-          …if you'll give me a moment of your time.
+        <p className="mb-12 whitespace-pre-line text-lg italic text-sepia sm:text-xl">
+          …if you'll give me a moment of your time...{"\n"}
+          PLEASEEEE BEARRR WITH MEEE TANVIII!!
         </p>
 
         <Link
