@@ -167,7 +167,7 @@ function QuestionPage() {
             className="mb-3 text-xs uppercase tracking-[0.4em] text-sepia"
             style={{ fontFamily: "var(--font-type)" }}
           >
-            and so — one question
+            FUCKKKK YESS!!!!
           </p>
 
           {!thanks ? (
@@ -217,9 +217,9 @@ function QuestionPage() {
               >
                 you said yes ♥
               </h1>
-              <p className="mt-6 text-lg italic text-sepia">
-                you've just made me the happiest person alive. <br />
-                I'll see you soon — I promise this time.
+              <p className="mt-6 text-lg italic text-sepia whitespace-pre-line">
+                you've just made me the happiest person alive.{"\n"}
+                TEXTTTTT MEEE ASAPPP!!!!!
               </p>
               <div className="mt-8 text-3xl">🌹</div>
             </div>
