@@ -22,7 +22,7 @@ function Welcome() {
           className="mb-6 text-sm uppercase tracking-[0.4em] text-sepia"
           style={{ fontFamily: "var(--font-type)" }}
         >
-          ✦ for you, my love ✦
+          ✦ I WON'T TAKE YOUR TIME BUT ✦
         </p>
 
         <h1
@@ -35,7 +35,7 @@ function Welcome() {
         <div className="mx-auto my-10 h-px w-24 bg-sepia/60" />
 
         <p className="mb-12 text-lg italic text-sepia sm:text-xl">
-          take a breath. then, when you're ready…
+          ikikikik,you would be either annoyed or intrigued by this. ANDDDDD IM SORRYYY FOR THATTT&nbsp; &nbsp; T_T
         </p>
 
         <Link
