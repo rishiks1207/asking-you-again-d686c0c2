@@ -167,7 +167,7 @@ function QuestionPage() {
             className="mb-3 text-xs uppercase tracking-[0.4em] text-sepia"
             style={{ fontFamily: "var(--font-type)" }}
           >
-            and so — one question
+            FUCKKKK YESS!!!!
           </p>
 
           {!thanks ? (
