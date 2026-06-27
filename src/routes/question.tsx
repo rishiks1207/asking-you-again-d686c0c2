@@ -25,8 +25,6 @@ import more6 from "@/assets/more-6.png.asset.json";
 import more7 from "@/assets/more-7.png.asset.json";
 import more8 from "@/assets/more-8.png.asset.json";
 
-// 👇 Change this to wherever you want her to go if she clicks "No"
-const NO_REDIRECT_URL = "https://www.youtube.com/watch?v=hzbtyo7c2K0"; // a sad-but-pretty song
 
 export const Route = createFileRoute("/question")({
   head: () => ({
