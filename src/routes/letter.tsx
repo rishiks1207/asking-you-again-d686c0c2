@@ -57,20 +57,23 @@ function LetterPage() {
           </p>
           <p>
             I've been turning the words over in my head for days, trying to find the right ones — and the truth is, no
-            words feel big enough. So I'll just say it plainly: <em>I'm sorry.</em>
+            words feel big enough. So I'll just say it plainly: <em>I'm sorry.</em> I made a promise that i would'nt give up on us, no matter what happens.Thus here I am. I'm not gonna give up that easily. All the fights nd what not convo we had after breakup, was a cry of help. I was yearning for you. every convo, every text, and every interaction mattered to me.
           </p>
           <p className="whitespace-pre-line">
             I'm sorry for the moments I wasn't the person you deserved. For the silences I should have filled with kindness, and the small things I let slip away that were never small at all. You trusted me with something tender. well i cant't go back and fix everything, if i could i would've done so.{"\n"}
             If I could go back, I would. I'd hold the moment a little longer, listen a little closer, and tell you — properly — how much light you bring into my ordinary days.You make me wanna be a better person.{"\n"}
             Say I'm going crazy, but I need you more than food at night,{"\u00a0\n"}
-            cuz{"\n"}
+            cuz{"\n\n\n\n\n"}
             I need you beside me like a flower needs the light;{"\n"}
-            Be my last and only, let me hold you every night{"\u00a0\n"}
+            Be my last and only, let me hold you every night{"\u00a0\n\n"}
+            Pleaseee can you think about it, we will keep it quite. if it works we'll hard launch, till then it should be between us. If it didn't work out well,{"\n"}
+            we can forget about everything and move on, more importantly i'll move without annoyin u.
           </p>
           <div className="whitespace-pre-line">{"\n"}</div>
           <p className="whitespace-pre-line">
             I’m such a loser, swear to god I’m the worst{"\n"}
             I always fuck everything up it’s a curse{"\n"}
+            I promise you that i wont fuck this up again.{"\u00a0\n"}
             You don't owe me anything. Not your forgiveness, not your time. But I needed you to know that you are thought of, deeply, and that the place you took up in my heart hasn't moved an inch.
           </p>
           <p className="pt-2 text-right italic text-sepia" style={{ fontFamily: "var(--font-script)" }}>
