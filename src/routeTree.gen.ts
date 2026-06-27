@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as QuestionRouteImport } from './routes/question'
+import { Route as ManageRouteImport } from './routes/manage'
 import { Route as LetterRouteImport } from './routes/letter'
 import { Route as IntroRouteImport } from './routes/intro'
 import { Route as IndexRouteImport } from './routes/index'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const QuestionRoute = QuestionRouteImport.update({
   id: '/question',
   path: '/question',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManageRoute = ManageRouteImport.update({
+  id: '/manage',
+  path: '/manage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LetterRoute = LetterRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/intro': typeof IntroRoute
   '/letter': typeof LetterRoute
+  '/manage': typeof ManageRoute
   '/question': typeof QuestionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/intro': typeof IntroRoute
   '/letter': typeof LetterRoute
+  '/manage': typeof ManageRoute
   '/question': typeof QuestionRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,22 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/intro': typeof IntroRoute
   '/letter': typeof LetterRoute
+  '/manage': typeof ManageRoute
   '/question': typeof QuestionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/intro' | '/letter' | '/question'
+  fullPaths: '/' | '/intro' | '/letter' | '/manage' | '/question'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/intro' | '/letter' | '/question'
-  id: '__root__' | '/' | '/intro' | '/letter' | '/question'
+  to: '/' | '/intro' | '/letter' | '/manage' | '/question'
+  id: '__root__' | '/' | '/intro' | '/letter' | '/manage' | '/question'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   IntroRoute: typeof IntroRoute
   LetterRoute: typeof LetterRoute
+  ManageRoute: typeof ManageRoute
   QuestionRoute: typeof QuestionRoute
 }
 
@@ -76,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/question'
       fullPath: '/question'
       preLoaderRoute: typeof QuestionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manage': {
+      id: '/manage'
+      path: '/manage'
+      fullPath: '/manage'
+      preLoaderRoute: typeof ManageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/letter': {
@@ -106,6 +123,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   IntroRoute: IntroRoute,
   LetterRoute: LetterRoute,
+  ManageRoute: ManageRoute,
   QuestionRoute: QuestionRoute,
 }
 export const routeTree = rootRouteImport
