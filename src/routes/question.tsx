@@ -267,6 +267,7 @@ function QuestionPage() {
 
               <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
                 <button
+                  ref={yesBtnRef}
                   onClick={handleYes}
                   disabled={submitting}
                   className="group inline-flex min-w-[160px] items-center justify-center gap-2 rounded-full bg-rose-deep px-10 py-4 text-lg text-cream shadow-[0_6px_0_oklch(0.4_0.15_20)] transition-all hover:translate-y-[2px] hover:shadow-[0_4px_0_oklch(0.4_0.15_20)] disabled:opacity-50"
