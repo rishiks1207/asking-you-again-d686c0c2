@@ -22,14 +22,14 @@ function Intro() {
           className="mb-6 text-sm uppercase tracking-[0.4em] text-sepia"
           style={{ fontFamily: "var(--font-type)" }}
         >
-          ✦ IT HAS BEEN 6 MONTHS ✦
+          {"\n"}
         </p>
 
         <h1
           className="text-balance text-5xl leading-tight text-ink sm:text-7xl"
           style={{ fontFamily: "var(--font-script)" }}
         >
-          I want to tell you something
+          I want to telllll you something
         </h1>
 
         <div className="mx-auto my-10 h-px w-24 bg-sepia/60" />
