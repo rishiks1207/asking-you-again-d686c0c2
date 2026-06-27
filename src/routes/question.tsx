@@ -29,7 +29,22 @@ export const Route = createFileRoute("/question")({
   component: QuestionPage,
 });
 
-const films = [film1, film2, film3, film4];
+const films = [
+  film1,
+  extra1.url,
+  film2,
+  extra2.url,
+  extra3.url,
+  film3,
+  extra4.url,
+  extra5.url,
+  extra6.url,
+  film4,
+  extra7.url,
+  extra8.url,
+  extra9.url,
+  extra10.url,
+];
 
 function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?: number }) {
   const doubled = [...films, ...films, ...films, ...films];
