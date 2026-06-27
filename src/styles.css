@@ -137,11 +137,11 @@
 
 @keyframes filmstrip-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(calc(-50% - 8px)); }
 }
 
 @keyframes filmstrip-scroll-rev {
-  from { transform: translateX(-50%); }
+  from { transform: translateX(calc(-50% - 8px)); }
   to { transform: translateX(0); }
 }
 

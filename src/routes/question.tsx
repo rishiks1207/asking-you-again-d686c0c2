@@ -15,6 +15,14 @@ import extra7 from "@/assets/extra-7.png.asset.json";
 import extra8 from "@/assets/extra-8.png.asset.json";
 import extra9 from "@/assets/extra-9.png.asset.json";
 import extra10 from "@/assets/extra-10.png.asset.json";
+import more1 from "@/assets/more-1.png.asset.json";
+import more2 from "@/assets/more-2.png.asset.json";
+import more3 from "@/assets/more-3.png.asset.json";
+import more4 from "@/assets/more-4.png.asset.json";
+import more5 from "@/assets/more-5.png.asset.json";
+import more6 from "@/assets/more-6.png.asset.json";
+import more7 from "@/assets/more-7.png.asset.json";
+import more8 from "@/assets/more-8.png.asset.json";
 
 // 👇 Change this to wherever you want her to go if she clicks "No"
 const NO_REDIRECT_URL = "https://www.youtube.com/watch?v=hzbtyo7c2K0"; // a sad-but-pretty song
@@ -29,25 +37,49 @@ export const Route = createFileRoute("/question")({
   component: QuestionPage,
 });
 
-const films = [
+const coupleFilms = [
   film1,
+  film3,
+  more1.url,
+  more2.url,
+  more4.url,
+  more5.url,
+  more7.url,
   extra1.url,
-  film2,
   extra2.url,
   extra3.url,
-  film3,
   extra4.url,
   extra5.url,
   extra6.url,
-  film4,
   extra7.url,
   extra8.url,
   extra9.url,
   extra10.url,
 ];
 
+const soloFilms = [
+  more3.url,
+  more6.url,
+  more8.url,
+  film2,
+  film4,
+];
+
+const films = (() => {
+  const ordered: string[] = [];
+  const blocks = Math.max(Math.ceil(coupleFilms.length / 3), Math.ceil(soloFilms.length / 2));
+
+  for (let i = 0; i < blocks; i += 1) {
+    ordered.push(...coupleFilms.slice(i * 3, i * 3 + 3));
+    ordered.push(...soloFilms.slice(i * 2, i * 2 + 2));
+  }
+
+  return ordered;
+})();
+
 function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?: number }) {
-  const doubled = [...films, ...films, ...films, ...films];
+  const looped = [...films, ...films];
+
   return (
     <div className="relative h-44 overflow-hidden border-y-[14px] border-ink/90 bg-ink/95 sm:h-56">
       {/* sprocket holes */}
@@ -62,15 +94,14 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
         }}
       />
       <div
-        className="flex h-full gap-4 px-4 will-change-transform"
+        className="flex h-full w-max gap-4 px-4 will-change-transform"
         style={{
-          width: "200%",
           animation: `${reverse ? "filmstrip-scroll-rev" : "filmstrip-scroll"} ${speed}s linear infinite`,
         }}
       >
-        {doubled.map((src, i) => (
+        {looped.map((src, i) => (
           <div
-            key={i}
+            key={`${src}-${i}`}
             className="h-full aspect-square shrink-0 overflow-hidden border-2 border-cream/20 bg-cream/5"
             style={{ filter: "sepia(0.35) contrast(1.05) brightness(0.95)" }}
           >
@@ -88,6 +119,7 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
     </div>
   );
 }
+
 
 function QuestionPage() {
   const [submitting, setSubmitting] = useState(false);
