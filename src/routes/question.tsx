@@ -167,7 +167,7 @@ function QuestionPage() {
             className="mb-3 text-xs uppercase tracking-[0.4em] text-sepia"
             style={{ fontFamily: "var(--font-type)" }}
           >
-            FUCKKKK YESS!!!!
+            SO HERE'S THE MILLION DOLLAR QUESTION
           </p>
 
           {!thanks ? (
