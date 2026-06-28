@@ -2,24 +2,34 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { HeartBurstLayer, HeartRain, useHeartBurst } from "@/components/hearts";
-import extra1 from "@/assets/extra-1.png";
-import extra2 from "@/assets/extra-2.png";
-import extra3 from "@/assets/extra-3.png";
-import extra4 from "@/assets/extra-4.png";
-import extra5 from "@/assets/extra-5.png";
-import extra6 from "@/assets/extra-6.png";
-import extra7 from "@/assets/extra-7.png";
-import extra8 from "@/assets/extra-8.png";
-import extra9 from "@/assets/extra-9.png";
-import extra10 from "@/assets/extra-10.png";
-import more1 from "@/assets/more-1.png";
-import more2 from "@/assets/more-2.png";
-import more3 from "@/assets/more-3.png";
-import more4 from "@/assets/more-4.png";
-import more5 from "@/assets/more-5.png";
-import more6 from "@/assets/more-6.png";
-import more7 from "@/assets/more-7.png";
-import more8 from "@/assets/more-8.png";
+import photo01Asset from "@/assets/user-photo-01.png.asset.json";
+import photo02Asset from "@/assets/user-photo-02.png.asset.json";
+import photo03Asset from "@/assets/user-photo-03.png.asset.json";
+import photo04Asset from "@/assets/user-photo-04.png.asset.json";
+import photo05Asset from "@/assets/user-photo-05.png.asset.json";
+import photo06Asset from "@/assets/user-photo-06.png.asset.json";
+import photo07Asset from "@/assets/user-photo-07.png.asset.json";
+import photo08Asset from "@/assets/user-photo-08.png.asset.json";
+import photo09Asset from "@/assets/user-photo-09.png.asset.json";
+import photo10Asset from "@/assets/user-photo-10.png.asset.json";
+import photo11Asset from "@/assets/user-photo-11.png.asset.json";
+import photo12Asset from "@/assets/user-photo-12.png.asset.json";
+import photo13Asset from "@/assets/user-photo-13.png.asset.json";
+import photo14Asset from "@/assets/user-photo-14.png.asset.json";
+import photo15Asset from "@/assets/user-photo-15.png.asset.json";
+import photo16Asset from "@/assets/user-photo-16.png.asset.json";
+import photo17Asset from "@/assets/user-photo-17.png.asset.json";
+import photo18Asset from "@/assets/user-photo-18.png.asset.json";
+import photo19Asset from "@/assets/user-photo-19.png.asset.json";
+import photo20Asset from "@/assets/user-photo-20.png.asset.json";
+import photo21Asset from "@/assets/user-photo-21.png.asset.json";
+import photo22Asset from "@/assets/user-photo-22.png.asset.json";
+import photo23Asset from "@/assets/user-photo-23.png.asset.json";
+import photo24Asset from "@/assets/user-photo-24.png.asset.json";
+import photo25Asset from "@/assets/user-photo-25.png.asset.json";
+import photo26Asset from "@/assets/user-photo-26.png.asset.json";
+import photo27Asset from "@/assets/user-photo-27.png.asset.json";
+import photo28Asset from "@/assets/user-photo-28.png.asset.json";
 
 
 export const Route = createFileRoute("/question")({
@@ -33,27 +43,37 @@ export const Route = createFileRoute("/question")({
 });
 
 const coupleFilms = [
-  more1,
-  more2,
-  more4,
-  more5,
-  more7,
-  extra1,
-  extra2,
-  extra3,
-  extra4,
-  extra5,
-  extra6,
-  extra7,
-  extra8,
-  extra9,
-  extra10,
+  photo01Asset.url,
+  photo02Asset.url,
+  photo03Asset.url,
+  photo04Asset.url,
+  photo05Asset.url,
+  photo06Asset.url,
+  photo07Asset.url,
+  photo08Asset.url,
+  photo09Asset.url,
+  photo10Asset.url,
+  photo11Asset.url,
+  photo12Asset.url,
+  photo13Asset.url,
+  photo14Asset.url,
+  photo15Asset.url,
+  photo16Asset.url,
+  photo17Asset.url,
+  photo18Asset.url,
+  photo19Asset.url,
+  photo20Asset.url,
+  photo21Asset.url,
+  photo23Asset.url,
+  photo24Asset.url,
+  photo27Asset.url,
 ];
 
 const soloFilms = [
-  more3,
-  more6,
-  more8,
+  photo22Asset.url,
+  photo25Asset.url,
+  photo26Asset.url,
+  photo28Asset.url,
 ];
 
 const films = (() => {
@@ -99,7 +119,8 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
             <img
               src={src}
               alt=""
-              loading="lazy"
+              loading="eager"
+              decoding="async"
               width={400}
               height={400}
               className="h-full w-full object-cover"
