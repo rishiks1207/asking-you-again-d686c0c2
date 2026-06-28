@@ -2,34 +2,12 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { HeartBurstLayer, HeartRain, useHeartBurst } from "@/components/hearts";
-import photo01Asset from "@/assets/user-photo-01.png.asset.json";
-import photo02Asset from "@/assets/user-photo-02.png.asset.json";
-import photo03Asset from "@/assets/user-photo-03.png.asset.json";
-import photo04Asset from "@/assets/user-photo-04.png.asset.json";
-import photo05Asset from "@/assets/user-photo-05.png.asset.json";
-import photo06Asset from "@/assets/user-photo-06.png.asset.json";
-import photo07Asset from "@/assets/user-photo-07.png.asset.json";
-import photo08Asset from "@/assets/user-photo-08.png.asset.json";
-import photo09Asset from "@/assets/user-photo-09.png.asset.json";
-import photo10Asset from "@/assets/user-photo-10.png.asset.json";
-import photo11Asset from "@/assets/user-photo-11.png.asset.json";
-import photo12Asset from "@/assets/user-photo-12.png.asset.json";
-import photo13Asset from "@/assets/user-photo-13.png.asset.json";
-import photo14Asset from "@/assets/user-photo-14.png.asset.json";
-import photo15Asset from "@/assets/user-photo-15.png.asset.json";
-import photo16Asset from "@/assets/user-photo-16.png.asset.json";
-import photo17Asset from "@/assets/user-photo-17.png.asset.json";
-import photo18Asset from "@/assets/user-photo-18.png.asset.json";
-import photo19Asset from "@/assets/user-photo-19.png.asset.json";
-import photo20Asset from "@/assets/user-photo-20.png.asset.json";
-import photo21Asset from "@/assets/user-photo-21.png.asset.json";
-import photo22Asset from "@/assets/user-photo-22.png.asset.json";
-import photo23Asset from "@/assets/user-photo-23.png.asset.json";
-import photo24Asset from "@/assets/user-photo-24.png.asset.json";
-import photo25Asset from "@/assets/user-photo-25.png.asset.json";
-import photo26Asset from "@/assets/user-photo-26.png.asset.json";
-import photo27Asset from "@/assets/user-photo-27.png.asset.json";
-import photo28Asset from "@/assets/user-photo-28.png.asset.json";
+
+// Photos now live as real files in /public/photos and are referenced by
+// root-relative path. This avoids the Lovable "lazy asset" pointer files
+// (*.png.asset.json) which only resolve inside Lovable's own preview/hosting
+// and 404 when the raw repo is built and served elsewhere (e.g. Vercel).
+const photoPath = (n: number) => `/photos/user-photo-${String(n).padStart(2, "0")}.jpg`;
 
 
 export const Route = createFileRoute("/question")({
@@ -42,51 +20,10 @@ export const Route = createFileRoute("/question")({
   component: QuestionPage,
 });
 
-const coupleFilms = [
-  photo01Asset.url,
-  photo02Asset.url,
-  photo03Asset.url,
-  photo04Asset.url,
-  photo05Asset.url,
-  photo06Asset.url,
-  photo07Asset.url,
-  photo08Asset.url,
-  photo09Asset.url,
-  photo10Asset.url,
-  photo11Asset.url,
-  photo12Asset.url,
-  photo13Asset.url,
-  photo14Asset.url,
-  photo15Asset.url,
-  photo16Asset.url,
-  photo17Asset.url,
-  photo18Asset.url,
-  photo19Asset.url,
-  photo20Asset.url,
-  photo21Asset.url,
-  photo23Asset.url,
-  photo24Asset.url,
-  photo27Asset.url,
-];
+// Total number of photos in /public/photos, named user-photo-01.jpg ... user-photo-NN.jpg
+const PHOTO_COUNT = 26;
 
-const soloFilms = [
-  photo22Asset.url,
-  photo25Asset.url,
-  photo26Asset.url,
-  photo28Asset.url,
-];
-
-const films = (() => {
-  const ordered: string[] = [];
-  const blocks = Math.max(Math.ceil(coupleFilms.length / 3), Math.ceil(soloFilms.length / 2));
-
-  for (let i = 0; i < blocks; i += 1) {
-    ordered.push(...coupleFilms.slice(i * 3, i * 3 + 3));
-    ordered.push(...soloFilms.slice(i * 2, i * 2 + 2));
-  }
-
-  return ordered;
-})();
+const films = Array.from({ length: PHOTO_COUNT }, (_, i) => photoPath(i + 1));
 
 function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?: number }) {
   const looped = [...films, ...films];
