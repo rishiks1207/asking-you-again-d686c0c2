@@ -119,7 +119,8 @@ function FilmStrip({ reverse = false, speed = 60 }: { reverse?: boolean; speed?:
             <img
               src={src}
               alt=""
-              loading="lazy"
+              loading="eager"
+              decoding="async"
               width={400}
               height={400}
               className="h-full w-full object-cover"
