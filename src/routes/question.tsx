@@ -7,7 +7,7 @@ import { HeartBurstLayer, HeartRain, useHeartBurst } from "@/components/hearts";
 // root-relative path. This avoids the Lovable "lazy asset" pointer files
 // (*.png.asset.json) which only resolve inside Lovable's own preview/hosting
 // and 404 when the raw repo is built and served elsewhere (e.g. Vercel).
-const photoPath = (n: number) => `/photos/user-photo-${String(n).padStart(2, "0")}.jpg`;
+const photoPath = (n: number) => `/photos/user-photo-${String(n).padStart(2, "0")}.jpeg`;
 
 
 export const Route = createFileRoute("/question")({
