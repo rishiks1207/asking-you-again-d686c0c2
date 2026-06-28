@@ -2,28 +2,24 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { HeartBurstLayer, HeartRain, useHeartBurst } from "@/components/hearts";
-import film1 from "@/assets/film-1.jpg";
-import film2 from "@/assets/film-2.jpg";
-import film3 from "@/assets/film-3.jpg";
-import film4 from "@/assets/film-4.jpg";
-import extra1 from "@/assets/extra-1.png.asset.json";
-import extra2 from "@/assets/extra-2.png.asset.json";
-import extra3 from "@/assets/extra-3.png.asset.json";
-import extra4 from "@/assets/extra-4.png.asset.json";
-import extra5 from "@/assets/extra-5.png.asset.json";
-import extra6 from "@/assets/extra-6.png.asset.json";
-import extra7 from "@/assets/extra-7.png.asset.json";
-import extra8 from "@/assets/extra-8.png.asset.json";
-import extra9 from "@/assets/extra-9.png.asset.json";
-import extra10 from "@/assets/extra-10.png.asset.json";
-import more1 from "@/assets/more-1.png.asset.json";
-import more2 from "@/assets/more-2.png.asset.json";
-import more3 from "@/assets/more-3.png.asset.json";
-import more4 from "@/assets/more-4.png.asset.json";
-import more5 from "@/assets/more-5.png.asset.json";
-import more6 from "@/assets/more-6.png.asset.json";
-import more7 from "@/assets/more-7.png.asset.json";
-import more8 from "@/assets/more-8.png.asset.json";
+import extra1 from "@/assets/extra-1.png";
+import extra2 from "@/assets/extra-2.png";
+import extra3 from "@/assets/extra-3.png";
+import extra4 from "@/assets/extra-4.png";
+import extra5 from "@/assets/extra-5.png";
+import extra6 from "@/assets/extra-6.png";
+import extra7 from "@/assets/extra-7.png";
+import extra8 from "@/assets/extra-8.png";
+import extra9 from "@/assets/extra-9.png";
+import extra10 from "@/assets/extra-10.png";
+import more1 from "@/assets/more-1.png";
+import more2 from "@/assets/more-2.png";
+import more3 from "@/assets/more-3.png";
+import more4 from "@/assets/more-4.png";
+import more5 from "@/assets/more-5.png";
+import more6 from "@/assets/more-6.png";
+import more7 from "@/assets/more-7.png";
+import more8 from "@/assets/more-8.png";
 
 
 export const Route = createFileRoute("/question")({
@@ -37,31 +33,27 @@ export const Route = createFileRoute("/question")({
 });
 
 const coupleFilms = [
-  film1,
-  film3,
-  more1.url,
-  more2.url,
-  more4.url,
-  more5.url,
-  more7.url,
-  extra1.url,
-  extra2.url,
-  extra3.url,
-  extra4.url,
-  extra5.url,
-  extra6.url,
-  extra7.url,
-  extra8.url,
-  extra9.url,
-  extra10.url,
+  more1,
+  more2,
+  more4,
+  more5,
+  more7,
+  extra1,
+  extra2,
+  extra3,
+  extra4,
+  extra5,
+  extra6,
+  extra7,
+  extra8,
+  extra9,
+  extra10,
 ];
 
 const soloFilms = [
-  more3.url,
-  more6.url,
-  more8.url,
-  film2,
-  film4,
+  more3,
+  more6,
+  more8,
 ];
 
 const films = (() => {
